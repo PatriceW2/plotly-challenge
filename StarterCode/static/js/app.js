@@ -38,6 +38,12 @@ function populatechart (filldata) {
         let otuid = result.otu_ids;
         let otulabel = result.out_labels;
         let samplevalue = result.sample_values;
+
+        //finding top 10 data elements 
+
+        let sortvalue = samplevalue.slice(0,10);
+        let sortlabel = otulabel.slice(0,10);
+        let sortid = otuid.slice(0,10);
         
         let bubbledata = [
             {
