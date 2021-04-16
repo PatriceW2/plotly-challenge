@@ -76,7 +76,19 @@ function populatechart (filldata) {
 
 function findMetadata (filldata) {
     d3.json('samples.json').then(data => {
-        
+        const metasamples = data.metadata;
+        //console.log(metasamples)
+        let filtermdata = metasamples.filter(metaobject => metaobject.id = filldata);
+        let metaresult = filtermdata[0]
+
+        let demodata = d3.select(#sample-metadata);
+
+      
+
+
+
+
+        //let filterdata = samples.filter(sampobject => sampobject.id = filldata);
     }
 
 }
