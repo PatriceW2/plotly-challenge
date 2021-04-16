@@ -74,4 +74,11 @@ function populatechart (filldata) {
 
 //create metadata function to populate the metadata
 
+function findMetadata (filldata) {
+    d3.json('samples.json').then(data => {
+        
+    }
+
+}
+
 init ();
