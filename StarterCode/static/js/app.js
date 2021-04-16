@@ -9,17 +9,17 @@ function optionChanged (newsample) {
 
 function init () {
     //alert("hello");
-    var dataselect = d3.select("#selDataset");
+    const dataselect = d3.select("#selDataset");
     d3.json('samples.json').then(data => {
         console.log(data);
-        var names = data.names;
+        let names = data.names;
         names.forEach ((sample) => {
             dataselect.append("option")
             .text(sample) 
             .property("value", sample);
 
         }); 
-        var defaultsamp = names[0];
+        const defaultsamp = names[0];
         populatechart(defaultsamp);
        // populatemetadata(defaultsamp);
 
@@ -30,14 +30,14 @@ function init () {
 function populatechart (filldata) {
     d3.json('samples.json').then(data => {
         console.log(data);
-        var samples = data.samples;
+        const samples = data.samples;   //data.metadata for the metadata function
         //console.log(samples)
-        var filterdata = samples.filter(sampobject => sampobject.id = filldata);
-        var result = filterdata[0];
+        let filterdata = samples.filter(sampobject => sampobject.id = filldata);
+        let result = filterdata[0];
         //console.log(result)
-        var otuid = result.otu_ids;
-        var otulabel = result.out_labels;
-        var samplevalue = result.sample_values;
+        let otuid = result.otu_ids;
+        let otulabel = result.out_labels;
+        let samplevalue = result.sample_values;
         
         let bubbledata = [
             {
@@ -65,9 +65,13 @@ function populatechart (filldata) {
         };
 
         Plotly.newPlot("bubble", bubbledata, bubblelayout);
+
+        //create bar chart
  
      });
 
 }
+
+//create metadata function to populate the metadata
 
 init ();
