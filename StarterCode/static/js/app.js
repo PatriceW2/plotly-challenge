@@ -72,9 +72,17 @@ function populatechart (filldata) {
                 x: samplevalue,
                 y: otulabel,
                 type: "bar",
+                orientation: "h"
 
             }
-        ]
+        ];
+
+        let  barlayout = {
+            title : "Top 10 OTU",
+            xaxis : {title: "Sample Amount"}
+        };
+
+        Plotly.newPlot("bar", barchart, barlayout)
 
  
      });
@@ -96,9 +104,7 @@ function findMetadata (filldata) {
         //clear before receiving new data 
         demodata.html("");
 
-        Object.enteries(filtermdata).forEach(key) => {
-            demodata.append("h5").text(key[0].toUpperCase() + ":" + key[1])
-        }
+       
 
       
         //let filterdata = samples.filter(sampobject => sampobject.id = filldata);
