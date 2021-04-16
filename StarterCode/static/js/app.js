@@ -35,15 +35,15 @@ function populatechart (filldata) {
         let filterdata = samples.filter(sampobject => sampobject.id = filldata);
         let result = filterdata[0];
         //console.log(result)
-        let otuid = result.otu_ids;
+        let otuid = result.otu_ids.slice(0,10);
         let otulabel = result.out_labels;
         let samplevalue = result.sample_values;
 
         //finding top 10 data elements 
 
-        let sortvalue = samplevalue.slice(0,10);
-        let sortlabel = otulabel.slice(0,10);
-        let sortid = otuid.slice(0,10);
+        //let sortvalue = samplevalue.slice(0,10);
+        //let sortlabel = otulabel.slice(0,10);
+        //let sortid = otuid.slice(0,10);
         
         let bubbledata = [
             {
@@ -93,6 +93,8 @@ function populatechart (filldata) {
  
      });
 
+
+
 }
 
 //create metadata function to populate the metadata
@@ -102,13 +104,17 @@ function findMetadata (filldata) {
         const metasamples = data.metadata;
         //console.log(metasamples)
         let filtermdata = metasamples.filter(metaobject => metaobject.id = filldata);
-        let metaresult = filtermdata[0]
+        //let metaresult = filtermdata[0]
 
         //demo information to display data 
         let demodata = d3.select("#sample-metadata");
 
         //clear before receiving new data 
         demodata.html("");
+
+        Object.enteries(filtermdata).forEach((key) => {
+            demodata.append("h5").text(key[0].toUpperCase(+ ":" + key[1]))
+        });
 
        
 
