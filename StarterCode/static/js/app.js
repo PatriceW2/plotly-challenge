@@ -67,6 +67,15 @@ function populatechart (filldata) {
         Plotly.newPlot("bubble", bubbledata, bubblelayout);
 
         //create bar chart
+        let barchart = [
+            {
+                x: samplevalue,
+                y: otulabel,
+                type: "bar",
+
+            }
+        ]
+
  
      });
 
@@ -81,15 +90,19 @@ function findMetadata (filldata) {
         let filtermdata = metasamples.filter(metaobject => metaobject.id = filldata);
         let metaresult = filtermdata[0]
 
-        let demodata = d3.select(#sample-metadata);
+        //demo information to display data 
+        let demodata = d3.select("#sample-metadata");
+
+        //clear before receiving new data 
+        demodata.html("");
+
+        Object.enteries(filtermdata).forEach(key) => {
+            demodata.append("h5").text(key[0].toUpperCase() + ":" + key[1])
+        }
 
       
-
-
-
-
         //let filterdata = samples.filter(sampobject => sampobject.id = filldata);
-    }
+    })
 
 }
 
