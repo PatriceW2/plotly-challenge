@@ -108,19 +108,16 @@ function populatechart (filldata) {
 function findMetadata (filldata) {
     d3.json('samples.json').then(data => {
         const metasamples = data.metadata;
-        //console.log(metasamples)
-        let filtermdata = metasamples.filter(metaobject => metaobject.id.toString() === filldata[0]);
-        //let metaresult = filtermdata[0]
+        let filtermdata = metasamples.filter(meta => meta.id.toString() === filldata);
+        let result = filtermdata[0];
+        let metaselect = d3.select("#sample-metadata");
+        metaselect.html("");
+        Object.entries(result).forEach(([key, value]) => {
+            metaselect.append("h6").text(`${key.toUpperCase()}: ${value}`)
+        }
 
-        //demo information to display data 
-        let demodata = d3.select("#sample-metadata");
+        )
 
-        //clear before receiving new data 
-        demodata.html("");
-
-        Object.enteries(filtermdata).forEach((key) => {
-            demodata.append("h5").text(key[0].toUpperCase(+ ":" + key[1]))
-        });
 
        
 
