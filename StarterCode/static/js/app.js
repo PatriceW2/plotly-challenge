@@ -1,5 +1,5 @@
 d3.json('samples.json').then(data => {
-   console.log(data);
+   //console.log(data);
 })
 
 
@@ -8,7 +8,7 @@ function init () {
     //alert("hello");
     const dataselect = d3.select("#selDataset");
     d3.json('samples.json').then(data => {
-        console.log(data);
+        //console.log(data);
         let names = data.names;
         names.forEach ((sample) => {
             dataselect.append("option")
@@ -18,7 +18,7 @@ function init () {
         }); 
         const defaultsamp = names[0];
         populatechart(defaultsamp);
-       // populatemetadata(defaultsamp);
+        findMetadata(defaultsamp);
 
      });
 
@@ -34,16 +34,16 @@ function optionChanged (newsample) {
 
 function populatechart (filldata) {
     d3.json('samples.json').then(data => {
-        console.log(data);
+        //console.log(data);
         const samples = data.samples;   //data.metadata for the metadata function
         //console.log(samples)
-        let filterdata = samples.filter(sampobject => sampobject.id = filldata);
+        let filterdata = samples.filter(sampObject => sampObject.id === filldata);
         let result = filterdata[0];
         //console.log(result)
         let otuid = result.otu_ids.slice(0,10);
-        let otulabel = result.otu_labels;
-        let samplevalue = result.sample_values;
-        let sortValue = samplevalue.slice(0,10);
+        let otulabel = result.otu_labels.slice(0,10);
+        let samplevalue = result.sample_values.slice(0,10);
+       
 
         //finding top 10 data elements 
 
