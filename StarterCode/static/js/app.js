@@ -2,10 +2,7 @@ d3.json('samples.json').then(data => {
    console.log(data);
 })
 
-function optionChanged (newsample) {
-    populatechart(newsample);
-    //populatemetadata(newsample);
-}
+
 
 function init () {
     //alert("hello");
@@ -25,7 +22,15 @@ function init () {
 
      });
 
+     
+
 }
+
+function optionChanged (newsample) {
+    populatechart(newsample);
+    findMetadata(newsample);
+}
+
 
 function populatechart (filldata) {
     d3.json('samples.json').then(data => {
@@ -36,8 +41,9 @@ function populatechart (filldata) {
         let result = filterdata[0];
         //console.log(result)
         let otuid = result.otu_ids.slice(0,10);
-        let otulabel = result.out_labels;
+        let otulabel = result.otu_labels;
         let samplevalue = result.sample_values;
+        let sortValue = samplevalue.slice(0,10);
 
         //finding top 10 data elements 
 
@@ -103,7 +109,7 @@ function findMetadata (filldata) {
     d3.json('samples.json').then(data => {
         const metasamples = data.metadata;
         //console.log(metasamples)
-        let filtermdata = metasamples.filter(metaobject => metaobject.id = filldata);
+        let filtermdata = metasamples.filter(metaobject => metaobject.id.toString() === filldata[0]);
         //let metaresult = filtermdata[0]
 
         //demo information to display data 
